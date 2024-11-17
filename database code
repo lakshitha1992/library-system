@@ -1,0 +1,120 @@
+-- Create Database
+CREATE DATABASE LibrarySystem;
+
+USE LibrarySystem;
+
+-- 1. Users Table
+CREATE TABLE users (
+id INT AUTO_INCREMENT PRIMARY KEY,
+full_name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+phone VARCHAR(15) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Categories Table
+CREATE TABLE categories (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- 3. Books Table
+CREATE TABLE books (
+id INT AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+author VARCHAR(100) NOT NULL,
+genre VARCHAR(100) NOT NULL,
+isbn VARCHAR(20) UNIQUE NOT NULL,
+publication_date DATE NOT NULL,
+language VARCHAR(50) NOT NULL,
+cover_image BLOB, -- For storing cover images
+category_id INT,
+status ENUM('available', 'borrowed') DEFAULT 'available',
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
+);
+
+-- 4. Fines Table
+CREATE TABLE fines (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+amount DECIMAL(10, 2) NOT NULL,
+status ENUM('paid', 'unpaid') DEFAULT 'unpaid',
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- 5. Borrowed Books Table
+CREATE TABLE borrowed_books (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+book_id INT,
+borrow_date DATE NOT NULL,
+return_date DATE,
+fine_id INT,
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE,
+FOREIGN KEY (fine_id) REFERENCES fines(id) ON DELETE SET NULL
+);
+
+-- 6. Notifications Table
+CREATE TABLE notifications (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+message TEXT NOT NULL,
+status ENUM('unread', 'read') DEFAULT 'unread',
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- 7. Digital Resources Table
+CREATE TABLE digital_resources (
+id INT AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+description TEXT NOT NULL,
+file_data LONGBLOB NOT NULL, -- Store PDF files in binary format
+upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- 8. Reservations Table
+CREATE TABLE reservations (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT,
+book_id INT,
+reservation_date DATE NOT NULL,
+status ENUM('active', 'completed', 'canceled') DEFAULT 'active',
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
+);
+
+-- 9. Inventory Table
+CREATE TABLE inventory (
+id INT AUTO_INCREMENT PRIMARY KEY,
+book_id INT,
+quantity INT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
+);
+
+ALTER TABLE books ADD COLUMN genre_id INT;
+
+-- Create a table to hold the relationship between books and categories
+CREATE TABLE book_genres (
+book_id INT NOT NULL,
+genre_id INT NOT NULL,
+PRIMARY KEY (book_id, genre_id),
+FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE,
+FOREIGN KEY (genre_id) REFERENCES categories(id) ON DELETE CASCADE
+);
+
+-- 10. Admins Table
+CREATE TABLE admins (
+id INT AUTO_INCREMENT PRIMARY KEY,
+full_name VARCHAR(100) NOT NULL,
+email VARCHAR(100) UNIQUE NOT NULL,
+phone VARCHAR(15) UNIQUE NOT NULL,
+password VARCHAR(255) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

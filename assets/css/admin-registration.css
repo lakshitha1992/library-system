@@ -1,0 +1,91 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #f0f2f5; /* Light background for better contrast */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Allow footer to be at bottom */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full height coverage */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the image fixed during scroll */
+    position: relative; /* Set the body to relative for layering */
+
+    /* Adding background image in a pseudo-element for opacity */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../img/index_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.75; /* Set opacity of background image */
+    z-index: -1; /* Ensures the background stays behind content */
+}
+
+.container-reg {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-center {
+    font-size: 45px;
+    color: white;
+    -webkit-text-stroke: 1px black; /* Border color and width */
+
+}
+.container-reg h2 {
+    text-align: center;
+    margin-bottom: 20px;
+   
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}

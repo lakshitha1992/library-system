@@ -1,0 +1,57 @@
+/* Custom styles for responsive layout */
+
+/* Set padding and margin for body and navbar to improve spacing */
+body {
+    padding-top: 56px;
+}
+
+/* Style the navbar for smaller screens */
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+}
+
+/* Adjust margins for the content inside the container */
+.container {
+    margin-top: 20px;
+}
+
+/* Ensure dropdowns fit smaller screens properly */
+.dropdown-menu {
+    font-size: 0.9rem;
+}
+
+/* Make the logout button stand out */
+.navbar-nav .nav-item .nav-link {
+    font-weight: bold;
+}
+
+/* Customize footer (if needed) */
+footer {
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+/* Adjustments for screens smaller than 768px */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+    
+    .container {
+        margin-top: 10px;
+    }
+
+    /* Responsive margin adjustment */
+    .navbar-nav .nav-item {
+        margin: 0 5px;
+    }
+}

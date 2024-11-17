@@ -1,0 +1,115 @@
+/* General Body Styling */
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #f0f2f5; /* Light background for better contrast */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Allow footer to be at bottom */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full height coverage */
+    background-image: url('../img/index_background.jpg');
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the image fixed during scroll */
+}
+
+/* Login Card Styling */
+.login {
+    max-width: 400px;
+    width: 100%; /* Ensure responsiveness */
+    margin-top: 10%;
+    padding: 50px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Login Card Styling */
+.sign_up {
+    max-width: 400px;
+    width: 100%; /* Ensure responsiveness */
+    margin-top: 2%;
+    padding: 50px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Slide-top Animation */
+@keyframes slide-top {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #333; /* Dark background for the footer */
+    color: white; /* White text color */
+    padding: 20px 0; /* Padding for top and bottom */
+    width: 100%; /* Full width */
+    margin-top: auto; /* Push footer to the bottom */
+    opacity: 0.75; /* Reduced opacity for a subtle effect */
+}
+
+.footer .container {
+    max-width: 1200px; /* Max width for the content */
+    margin: 0 auto; /* Center the content */
+    padding: 0 20px; /* Padding for left and right */
+    text-align: center; /* Center text alignment */
+}
+
+.footer p {
+    margin: 0; /* Remove margin */
+    font-size: 14px; /* Font size */
+}
+
+.footer-links {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin: 10px 0 0; /* Margin for spacing */
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: center; /* Center links */
+}
+
+.footer-links li {
+    margin: 0 15px; /* Space between links */
+}
+
+.footer-links a {
+    color: #42a5f5; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s; /* Transition effect */
+}
+
+.footer-links a:hover {
+    color: #1e88e5; /* Darker blue on hover */
+}
+
+/* Button Styling */
+button {
+    background-color: #42a5f5;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    width: 100%; /* Full width for better UX on mobile */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1e88e5; /* Darker blue on hover */
+}
+
